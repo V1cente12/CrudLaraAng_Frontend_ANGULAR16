@@ -1,7 +1,7 @@
 <div>
     <h2>Categorias</h2>
 
-    <form (ngSubmit)="agregarCategorias()">
+    <form (ngSubmit)="agregarCategoria()">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" [(ngModel)]="nuevaCategoria.nombre" required>
         <button type="submit">Agregar</button>
@@ -12,6 +12,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>obs</th>
                 <TH>Acciones</TH>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
             <tr *ngFor="let categoria of categorias">
                 <td>{{categoria.id}}</td>
                 <td>{{categoria.cat_nom}}</td>
+                <td>{{categoria.cat_obs}}</td>
                 <td>
                     <button (click)="editarCategoria(categoria.id)">Editar</button>
                     <button (click)="eliminarCategoria(categoria.id)">Eliminar</button>

@@ -11,7 +11,7 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
   getCategorias(): Observable<any>{
-    return this.http.get<any>('${this.apiUrl}/categoria');
+    return this.http.get<any>('http://127.0.0.1:8000/api/categoria');
   }
 
   getCategoriaById(id:number): Observable<any>{
@@ -27,6 +27,6 @@ export class CategoriaService {
   }
 
   deleteCategoria(id:number): Observable<any>{
-    return this.http.delete<any>('${this.apiUrl}/deleteCategoriabyid/${id}');
+    return this.http.delete<any>('http://127.0.0.1:8000/api/deleteCategoriabyid/${id}');
   }
 }

@@ -7,7 +7,7 @@ import { CategoriaService } from '../categoria.service';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit {
-    categorias: any[];
+    categorias: any[] = [];
     nuevaCategoria: any = {};
     categoriaSeleccionada: any ={};
 
@@ -21,10 +21,11 @@ export class CategoriasComponent implements OnInit {
       this.categoriaService.getCategorias()
       .subscribe(
         data =>{
+          console.log('Datos recibidos:', data);
           this.categorias = data;
         },
         error =>{
-          console.log(error);
+          console.log('Error al obtener las categorías:', error);
         }
       );
     }
