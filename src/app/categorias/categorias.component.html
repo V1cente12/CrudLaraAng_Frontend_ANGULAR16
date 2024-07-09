@@ -13,6 +13,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>obs</th>
+                <th>Creación</th>
                 <TH>Acciones</TH>
             </tr>
         </thead>
@@ -21,6 +22,7 @@
                 <td>{{categoria.id}}</td>
                 <td>{{categoria.cat_nom}}</td>
                 <td>{{categoria.cat_obs}}</td>
+                <td>{{categoria.created_at}}</td>
                 <td>
                     <button (click)="editarCategoria(categoria.id)">Editar</button>
                     <button (click)="eliminarCategoria(categoria.id)">Eliminar</button>
