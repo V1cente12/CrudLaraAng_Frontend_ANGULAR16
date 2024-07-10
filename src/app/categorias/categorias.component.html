@@ -32,3 +32,57 @@
     </table>
 </div>
 
+<div>
+    <h2>Buscar Categoría</h2>
+
+    <form (ngSubmit)="getCategoriaespecifica()">
+        <label for="id">ID Categoría a buscar:</label>
+        <input type="text" id="id" [(ngModel)]="categoriaId" name="id" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div *ngIf="categoriaEncontrada">
+        <h3>Detalles de la Categoría</h3>
+        <p>ID: {{ categoriaEncontrada.id }}</p>
+        <p>Nombre: {{ categoriaEncontrada.cat_nom }}</p>
+        <p>Observaciones: {{ categoriaEncontrada.cat_obs }}</p>
+        <p>Creado en: {{ categoriaEncontrada.created_at }}</p>
+    </div>
+</div>
+
+<div>
+    <h2>Buscar Categoría por nombre</h2>
+
+    <form (ngSubmit)="getCategorianombre()">
+        <label for="id">ID Categoría a buscar:</label>
+        <input type="text" id="name" [(ngModel)]="categoriaNombre" name="name" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div *ngIf="categoriaNombre">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>obs</th>
+                    <th>Creación</th>
+                    <TH>Acciones</TH>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categorianom of categoriaEncontradanombre">
+                    <td>{{categorianom.id}}</td>
+                    <td>{{categorianom.cat_nom}}</td>
+                    <td>{{categorianom.cat_obs}}</td>
+                    <td>{{categorianom.created_at}}</td>
+                    <td>
+                        <button (click)="editarCategoria(categorianom.id)">Editar</button>
+                        <button (click)="eliminarCategoria(categorianom.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

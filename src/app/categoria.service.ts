@@ -18,6 +18,10 @@ export class CategoriaService {
     return this.http.get<any>(`${this.apiUrl}/categoriaid/${id}`);
   }
 
+  getCategoriabyCat_nom(cat_nom:string): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/categoriacat_nom/${cat_nom}`);
+  }
+
   AddCategoria(categoria:any): Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/addCategoria`, categoria);
   }
