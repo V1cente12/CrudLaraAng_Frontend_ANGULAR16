@@ -11,22 +11,22 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
   getCategorias(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/categoria');
+    return this.http.get<any>(`${this.apiUrl}/categoria`);
   }
 
   getCategoriaById(id:number): Observable<any>{
-    return this.http.get<any>('${this.apiUrl}/categoriaid/${id}');
+    return this.http.get<any>(`${this.apiUrl}/categoriaid/${id}`);
   }
 
   AddCategoria(categoria:any): Observable<any>{
-    return this.http.post<any>('${this.apiUrl}/addCategoria', categoria);
+    return this.http.post<any>(`${this.apiUrl}/addCategoria`, categoria);
   }
 
   updateCategoria(id: number, categoria: any): Observable<any>{
-    return this.http.put<any>('${this.apiUrl}/updateCategoria/${id}', categoria);
+    return this.http.put<any>(`${this.apiUrl}/updateCategoria/${id}`, categoria);
   }
 
   deleteCategoria(id:number): Observable<any>{
-    return this.http.delete<any>('http://127.0.0.1:8000/api/deleteCategoriabyid/${id}');
+    return this.http.delete<any>(`${this.apiUrl}/deleteCategoriabyid/${id}`);
   }
 }
