@@ -1,88 +1,94 @@
-<div>
-    <h2>Categorias</h2>
-
-    <form (ngSubmit)="agregarCategoria()">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" [(ngModel)]="nuevaCategoria.nombre" required>
-        <button type="submit">Agregar</button>
+<div class="container">
+    <h2 class="my-4">Categorías</h2>
+  
+    <form (ngSubmit)="agregarCategoria()" class="mb-4">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" id="nombre" [(ngModel)]="nuevaCategoria.nombre" name="nombre" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
-
-    <table>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>obs</th>
+          <th>Creación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of categorias">
+          <td>{{categoria.id}}</td>
+          <td>{{categoria.cat_nom}}</td>
+          <td>{{categoria.cat_obs}}</td>
+          <td>{{categoria.created_at}}</td>
+          <td>
+            <button (click)="editarCategoria(categoria.id)" class="btn btn-warning btn-sm">Editar</button>
+            <button (click)="eliminarCategoria(categoria.id)" class="btn btn-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container mt-4">
+    <h2 class="my-4">Buscar Categoría</h2>
+  
+    <form (ngSubmit)="getCategoriaespecifica()" class="mb-4">
+      <div class="mb-3">
+        <label for="id" class="form-label">ID Categoría a buscar:</label>
+        <input type="text" id="id" [(ngModel)]="categoriaId" name="id" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+  
+    <div *ngIf="categoriaEncontrada">
+      <h3>Detalles de la Categoría</h3>
+      <p>ID: {{ categoriaEncontrada.id }}</p>
+      <p>Nombre: {{ categoriaEncontrada.cat_nom }}</p>
+      <p>Observaciones: {{ categoriaEncontrada.cat_obs }}</p>
+      <p>Creado en: {{ categoriaEncontrada.created_at }}</p>
+    </div>
+  </div>
+  
+  <div class="container mt-4">
+    <h2 class="my-4">Buscar Categoría por nombre</h2>
+  
+    <form (ngSubmit)="getCategorianombre()" class="mb-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre de Categoría a buscar:</label>
+        <input type="text" id="name" [(ngModel)]="categoriaNombre" name="name" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+  
+    <div *ngIf="categoriaNombre">
+      <table class="table table-striped">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>obs</th>
-                <th>Creación</th>
-                <TH>Acciones</TH>
-            </tr>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>obs</th>
+            <th>Creación</th>
+            <th>Acciones</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let categoria of categorias">
-                <td>{{categoria.id}}</td>
-                <td>{{categoria.cat_nom}}</td>
-                <td>{{categoria.cat_obs}}</td>
-                <td>{{categoria.created_at}}</td>
-                <td>
-                    <button (click)="editarCategoria(categoria.id)">Editar</button>
-                    <button (click)="eliminarCategoria(categoria.id)">Eliminar</button>
-                </td>
-            </tr>
+          <tr *ngFor="let categorianom of categoriaEncontradanombre">
+            <td>{{categorianom.id}}</td>
+            <td>{{categorianom.cat_nom}}</td>
+            <td>{{categorianom.cat_obs}}</td>
+            <td>{{categorianom.created_at}}</td>
+            <td>
+              <button (click)="editarCategoria(categorianom.id)" class="btn btn-warning btn-sm">Editar</button>
+              <button (click)="eliminarCategoria(categorianom.id)" class="btn btn-danger btn-sm">Eliminar</button>
+            </td>
+          </tr>
         </tbody>
-    </table>
-</div>
-
-<div>
-    <h2>Buscar Categoría</h2>
-
-    <form (ngSubmit)="getCategoriaespecifica()">
-        <label for="id">ID Categoría a buscar:</label>
-        <input type="text" id="id" [(ngModel)]="categoriaId" name="id" required>
-        <button type="submit">Buscar</button>
-    </form>
-
-    <div *ngIf="categoriaEncontrada">
-        <h3>Detalles de la Categoría</h3>
-        <p>ID: {{ categoriaEncontrada.id }}</p>
-        <p>Nombre: {{ categoriaEncontrada.cat_nom }}</p>
-        <p>Observaciones: {{ categoriaEncontrada.cat_obs }}</p>
-        <p>Creado en: {{ categoriaEncontrada.created_at }}</p>
+      </table>
     </div>
-</div>
-
-<div>
-    <h2>Buscar Categoría por nombre</h2>
-
-    <form (ngSubmit)="getCategorianombre()">
-        <label for="id">ID Categoría a buscar:</label>
-        <input type="text" id="name" [(ngModel)]="categoriaNombre" name="name" required>
-        <button type="submit">Buscar</button>
-    </form>
-
-    <div *ngIf="categoriaNombre">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>obs</th>
-                    <th>Creación</th>
-                    <TH>Acciones</TH>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let categorianom of categoriaEncontradanombre">
-                    <td>{{categorianom.id}}</td>
-                    <td>{{categorianom.cat_nom}}</td>
-                    <td>{{categorianom.cat_obs}}</td>
-                    <td>{{categorianom.created_at}}</td>
-                    <td>
-                        <button (click)="editarCategoria(categorianom.id)">Editar</button>
-                        <button (click)="eliminarCategoria(categorianom.id)">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
+  </div>
+  
