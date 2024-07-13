@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReqresComponent } from './reqres/reqres.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    ReqresComponent
   ],
   imports: [
     BrowserModule,
